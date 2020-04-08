@@ -1,0 +1,74 @@
+#image: golang:1.12.9-alpine
+image: golang:1.13
+
+stages:
+  - build Back
+  - build Front
+  - test Back
+  - test Front
+  - create-images
+
+variables:
+  GO_BIN: api-lagafy
+  API_CONTAINER_TEST_IMAGE: $CI_REGISTRY/active/lagash-internal/ar-software-delivery/lagafy:api
+  WEB_CONTAINER_TEST_IMAGE: $CI_REGISTRY/active/lagash-internal/ar-software-delivery/lagafy:web
+  
+build-Back:
+  stage: build Back
+  script:
+    - cd Back
+    - go build -o ${GO_BIN}
+    - cd ..
+  tags:
+    - go
+
+test-Back:
+  stage: test Back
+  script:
+    - cd Back
+    - go test ./... -v
+    - cd ..
+  tags:
+    - go
+
+build-Front:
+   stage: build Front
+   script:
+     - cd Front
+     - npm cache clean
+     - npm install
+     - npm run build
+     - cd ..
+   tags:
+     - nodejs
+
+# test-Front:
+#   stage: test Front
+#   script:
+#     - cd Front
+#     - npm run cypress:open
+#     - cd ..
+#   tags:
+#     - nodejs
+
+create-api-image:
+  stage: create-images
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $API_CONTAINER_TEST_IMAGE ./Back/
+    # - docker push $API_CONTAINER_TEST_IMAGE
+  tags:
+    - docker
+  # only:
+  #   - master
+
+create-ui-image:
+  stage: create-images
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $WEB_CONTAINER_TEST_IMAGE ./Front/
+    # - docker push $WEB_CONTAINER_TEST_IMAGE
+  tags:
+    - docker
+  # only:
+  #   - master

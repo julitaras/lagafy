@@ -1,0 +1,19 @@
+.checked {
+  background-color: #8bff9b;
+}
+
+.containerLists{
+  margin-top: 20px;
+  ul{
+    margin-bottom: 15px;
+  }
+  .list-group-item.active {
+    z-index: 2;
+    color: white;
+    background-color: #071aff;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4);
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,21 @@
+.Spinner {
+  margin: 0 auto;
+}
+
+.SpinnerContainer {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+.CheckinConfirmed {
+  display: flex;
+  align-items: center;
+  p {
+    text-align: center;
+  }
+}
+
+span {
+  font-size: 0.5rem;
+  margin-right: 5px;
+}

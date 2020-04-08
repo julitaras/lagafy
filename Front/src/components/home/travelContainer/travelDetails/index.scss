@@ -1,0 +1,49 @@
+.containerReservas{
+    margin-bottom: 32px;
+    h1{
+        font-size: 1.25rem;
+        margin-bottom: 25px;
+        span{
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: bottom;
+            margin-right: 5px;
+            i{
+                font-size: 0.875rem;
+            }
+        }
+    }
+    .datesTravels{
+        p{
+            margin-bottom: 0px;
+        }
+        p:first-child{
+            margin-bottom: 35px;
+        }
+    }
+}
+.reservaAlert{
+    i{
+        margin-right: 15px;
+    }
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 55px;
+    font-size: 14px;
+    div{
+        background: #D5DAFA;
+        color: black;
+        border: 0px;
+        padding: 17px;
+    }
+}
+.btnEmpty{
+    display: block;
+    margin: 0 auto;
+    margin-top: 41px;
+    border: 0px;
+    background: transparent;
+    color: #334CEA;
+    font-size: 0.875rem;
+}

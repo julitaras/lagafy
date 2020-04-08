@@ -1,0 +1,32 @@
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+
+  :first-child {
+    margin-right: 2px;
+  }
+}
+
+.Card {
+  width: 350px;
+  //margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 11px 1px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.CardContent,
+.CardForm {
+  text-align: left;
+  margin-left: 2px;
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.CardForm {
+  display: flex;
+  flex-direction: column;
+}

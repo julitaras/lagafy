@@ -1,0 +1,66 @@
+.containerDetail{
+    margin-bottom: 32px;
+    h1{
+        font-size: 1.25rem;
+        margin-bottom: 25px;
+    }
+    i{
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+}
+.containerList{
+    background: white;
+    max-width: 320px;
+    display: block ;
+    margin: 0 auto;
+    i{
+        display: block; 
+        font-size: 3.75rem;
+        padding-top: 40px;
+        padding-bottom: 30px;
+        margin-left: -40px;
+    }
+    ul{
+        list-style-type: none;
+        text-align: left;
+    }
+}
+.containerCheck{
+    button{
+        width: 162px;
+        height: 37px;
+        display: block;
+        margin-top: 15px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+}
+.containerChild{
+    text-align: center;
+    padding: 10px;
+}
+.datesDetails{
+    p{
+        margin-bottom: 0px;
+    }
+
+
+}
+
+.btnEmpty{
+    display: block;
+    margin-top: 0px;
+    border: 0px;
+    background: transparent;
+    color: #334CEA;
+    font-size: 0.875rem;
+    margin-left: 23px;
+  }
+.errorMsg{
+    color: red;
+    text-align: center;
+    font-size: 0.75rem;
+    margin-bottom: 15px !important;
+    display: block;
+}

@@ -1,0 +1,385 @@
+basePath: /api/
+definitions:
+  models.Passenger:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - email
+    - name
+    type: object
+  models.Reservation:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      passenger:
+        $ref: '#/definitions/models.Passenger'
+        type: object
+      passengerID:
+        type: integer
+      status:
+        type: string
+      travel:
+        $ref: '#/definitions/models.Travel'
+        type: object
+      travelID:
+        type: integer
+      updated_at:
+        type: string
+    required:
+    - passenger
+    type: object
+  models.Travel:
+    properties:
+      arrival:
+        type: string
+      arrivalAddress:
+        type: string
+      capacity:
+        type: integer
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      departure:
+        type: string
+      departureAddress:
+        type: string
+      destination:
+        type: string
+      driver:
+        type: string
+      hasWifi:
+        type: boolean
+      id:
+        type: integer
+      origin:
+        type: string
+      reservations:
+        items:
+          $ref: '#/definitions/models.Reservation'
+        type: array
+      status:
+        type: string
+      template:
+        type: boolean
+      updated_at:
+        type: string
+    required:
+    - arrivalAddress
+    - capacity
+    - departure
+    - departureAddress
+    - destination
+    - origin
+    type: object
+  models.TravelInformation:
+    properties:
+      arrival:
+        type: string
+      cancelled:
+        type: integer
+      capacity:
+        type: integer
+      confirmed:
+        type: integer
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      departure:
+        type: string
+      destination:
+        type: string
+      id:
+        type: integer
+      onboard:
+        type: integer
+      origin:
+        type: string
+      pending:
+        type: integer
+      updated_at:
+        type: string
+    required:
+    - capacity
+    - departure
+    - destination
+    - origin
+    type: object
+host: localhost:8888
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Lagafy API
+  version: "1.0"
+paths:
+  /reservation/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id reservation
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      security:
+      - ApiKeyAuth: []
+      summary: Delete reservation
+      tags:
+      - reservations
+  /reservation/{travelId}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Travel
+        in: path
+        name: travelId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Reservation'
+      security:
+      - ApiKeyAuth: []
+      summary: Create reservation on the given travel.
+      tags:
+      - reservations
+  /reservation/myreservations:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Reservation'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get my reservations list.
+      tags:
+      - reservations
+  /reservation/status/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Travel
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Reservation'
+      security:
+      - ApiKeyAuth: []
+      summary: Make Check-In of user for the selected travel.
+      tags:
+      - reservations
+  /travel/:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Create a travel
+        in: body
+        name: travel
+        required: true
+        schema:
+          $ref: '#/definitions/models.Travel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Travel'
+      security:
+      - ApiKeyAuth: []
+      summary: Create new travel
+      tags:
+      - travels
+  /travel/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: travel ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      security:
+      - ApiKeyAuth: []
+      summary: Delete travel
+      tags:
+      - travels
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: travel ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Travel'
+      security:
+      - ApiKeyAuth: []
+      summary: Get travel by ID
+      tags:
+      - travels
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id travel
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update a travel
+        in: body
+        name: travel
+        required: true
+        schema:
+          $ref: '#/definitions/models.Travel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Travel'
+      security:
+      - ApiKeyAuth: []
+      summary: Update travel
+      tags:
+      - travels
+  /travels/current:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Travel'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get currents travels
+      tags:
+      - travels
+  /travels/information:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'Start date. Expample: 2020-02-20'
+        in: query
+        name: start
+        required: true
+        type: string
+      - description: 'End date. Expample: 2020-03-10'
+        in: query
+        name: end
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.TravelInformation'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get information from travels
+      tags:
+      - travels
+  /travels/templates:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Travel'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get templates for travels
+      tags:
+      - travels
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

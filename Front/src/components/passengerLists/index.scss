@@ -1,0 +1,39 @@
+.btnSucces{
+    display: inline-block;
+    vertical-align: bottom;
+    button{
+        margin: 0 auto;
+      
+    }
+}
+.actionButtons{
+    display: inline-block;
+    vertical-align: bottom;
+    button{
+        margin-left: 15px;
+    }
+}
+.datesTravels{
+    margin-top: 50px;
+    padding: 10px;
+    border: 1px solid #dddcdc;
+    p{
+        display: inline-block;
+        margin-right: 15px;
+        margin-bottom: 5px;
+        font-size: 10px;
+    }
+
+
+    span{
+        display: inline-block;
+        margin-right: 10px;
+    }
+}
+.containerSpinner{
+    position: absolute;
+    top: 45%;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
